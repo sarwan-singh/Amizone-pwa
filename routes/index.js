@@ -11,7 +11,7 @@ const cheerio = require('cheerio');
 const schedule = require('node-schedule');
 
 const job = schedule.scheduleJob('0/20 * * * *', function(){
-  request.get('http://localhost:9000/').then(function(body){
+  request.get('https://amityamizone.herokuapp.com/').then(function(body){
     console.log("API TRIGGERED");
   })
 });
