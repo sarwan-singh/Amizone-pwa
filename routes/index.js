@@ -14,6 +14,9 @@ const job = schedule.scheduleJob('0/20 * * * *', function(){
   request.get('https://amityamizone.herokuapp.com/').then(function(body){
     console.log("API TRIGGERED");
   })
+  request.get('http://amizoneapp.herokuapp.com/').then(function(body){
+    console.log("APP TRIGGERRED");
+  })
 });
 
 
@@ -42,6 +45,7 @@ router.post('/login', function(req, res, next){
 router.post('/timetable', function(req,res,next){
   var Options = timeTableService.getOptions(req.body.cookies, req.body.date);
   request(Options).then(function(response){
+    console.log("Timetable request triggered");
     var timetableData = timeTableService.getTimetable(response)
     res.send({timetable:timetableData.timetable,retry:false});
   }).catch(function(err){
