@@ -45,6 +45,7 @@ router.post('/login', function(req, res, next){
 router.post('/timetable', function(req,res,next){
   var Options = timeTableService.getOptions(req.body.cookies, req.body.date);
   request(Options).then(function(response){
+    console.log("Timetable request triggered");
     var timetableData = timeTableService.getTimetable(response)
     res.send({timetable:timetableData.timetable,retry:false});
   }).catch(function(err){
