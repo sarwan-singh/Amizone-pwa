@@ -9,7 +9,7 @@ var MarksUrlSemWise = "https://student.amizone.net/Examination/Examination/Exami
 var MarksUrl = "https://student.amizone.net/Examination/Examination?X-Requested-With=XMLHttpRequest";
 
 module.exports = {
-    getOptions : function(cookie, semester = 0){
+    getOptions : async function(cookie, semester = 0){
         let URL;        
         let Method;
         if(semester==0){
@@ -38,12 +38,12 @@ module.exports = {
           return Options;
     },
 
-    getCurrentSem : function(response){
+    getCurrentSem : async function(response){
       var $ = cheerio.load(response);
       return $('option[selected="selected"]').html()
     }, 
 
-    getScrapedMarks : function(response){
+    getScrapedMarks : async function(response){
       var response;
       var lastSemMarks;
       var totalMarks;

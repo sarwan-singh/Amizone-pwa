@@ -12,7 +12,7 @@ var AttendanceDetailsUrl = "https://student.amizone.net/Academics/FlaxiCourses/_
 
 module.exports = {
 
-getOptions : function(cookie, semChoice=0){
+getOptions : async function(cookie, semChoice=0){
     let URL;
 
     if(semChoice==0||semChoice==undefined){
@@ -41,7 +41,7 @@ getOptions : function(cookie, semChoice=0){
       return Options;
 },
 
-getDetailsOptions : function(cookie, id){
+getDetailsOptions : async function(cookie, id){
 
     let URL = AttendanceDetailsUrl+id;
 
@@ -65,7 +65,7 @@ getDetailsOptions : function(cookie, id){
       return Options;
 },
 
-getAttendance : function(response){
+getAttendance : async function(response){
     var attendanceOfStudent = [];
     var $ = cheerio.load(response);
     console.log("Succesfully Scrapped Attendance...");
@@ -246,7 +246,7 @@ getAttendance : function(response){
     
 }
 ,
-getAttendanceDetails : function(response){
+getAttendanceDetails : async function(response){
     var attendanceDetails = [];
     var $ = cheerio.load(response);
     var scrapText = 'div[class="main-content"] > div[class="main-content-inner"] > div[class="row"] > div[class="col-xs-12"] > div[class="panel-group"] > div[class="panel panel-default"] > div[class="panel-heading"] > div[class="row"] > div[class="page-content"] > table[class="table table-bordered table-striped table-condensed"] > tbody';
