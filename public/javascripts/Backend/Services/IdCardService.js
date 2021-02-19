@@ -10,7 +10,7 @@ module.exports = {
 
     sam: 'rahib',
 
-    getOptions : async function(cookie){
+    getOptions : function(cookie){
         let URL = IdCardUrl;        
     
         var Options = {
@@ -30,7 +30,7 @@ module.exports = {
           return Options;
     },
 
-    getScrapedCard : async function(response){
+    getScrapedCard : function(response){
         var $ = cheerio.load(response);
 
         return $('div[class="main-content"] > div[class="main-content-inner"] > div[class="page-content"] > div[class="row "] > div[class="widget-box widget-color-blue"] > div[id="printableArea"]').html();

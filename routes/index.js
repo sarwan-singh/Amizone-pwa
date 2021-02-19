@@ -23,14 +23,14 @@ router.get('/', async function(req, res, next) {
 });
 
 router.post('/login', async function(req, res, next){
-  var firstOptions = await cookieService.getOptions();
+  var firstOptions = cookieService.getOptions();
   request(firstOptions).then(async function(body){
     var $ = cheerio.load(body);
-    var secondOptions = await cookieService.getOptions(req.body.userName ,req.body.password ,cookieService.getRequestVerificationToken($) ,cookieService.getQString($));
+    var secondOptions = cookieService.getOptions(req.body.userName ,req.body.password ,cookieService.getRequestVerificationToken($) ,cookieService.getQString($));
     request(secondOptions).then(async function (res){
       res.send({retry :true});
     }).catch(async function(err){
-      var checkAndCookies = await cookieService.generateCookies(err);
+      var checkAndCookies = cookieService.generateCookies(err);
         res.send({cookies:checkAndCookies.cookies,retry:false, check:checkAndCookies.check});
      });
   }).catch(async function (err){
@@ -40,10 +40,10 @@ router.post('/login', async function(req, res, next){
 });
 
 router.post('/timetable', async function(req,res,next){
-  var Options = await timeTableService.getOptions(req.body.cookies, req.body.date);
+  var Options = timeTableService.getOptions(req.body.cookies, req.body.date);
   request(Options).then(async function(response){
     console.log("Timetable request triggered");
-    var timetableData = await timeTableService.getTimetable(response)
+    var timetableData = timeTableService.getTimetable(response)
     res.send({timetable:timetableData.timetable,retry:false});
   }).catch(async function(err){
     console.log("Error in Timetable scrape...");
@@ -52,10 +52,10 @@ router.post('/timetable', async function(req,res,next){
 });
 
 router.post('/attendance', async function(req,res,next){
-  var Options = await attendanceService.getOptions(req.body.cookies, req.body.sem);
+  var Options = attendanceService.getOptions(req.body.cookies, req.body.sem);
   request(Options).then(async function(response){
     var $ = cheerio.load(response);
-    var attendanceData = await attendanceService.getAttendance(response);
+    var attendanceData = attendanceService.getAttendance(response);
     res.send({attendance:attendanceData.attendance,status:attendanceData.status,retry:false});
   }).catch(async function(err){
     console.log("Error in Attendance scrape...");
@@ -64,10 +64,10 @@ router.post('/attendance', async function(req,res,next){
 });
 
 router.post('/attendanceDetails', async function(req, res, next){
-  var Options = await attendanceService.getDetailsOptions(req.body.cookies, req.body.id);
+  var Options =  attendanceService.getDetailsOptions(req.body.cookies, req.body.id);
   request(Options).then(async function(response){
     var $ = cheerio.load(response);
-    var attendanceDetails = await attendanceService.getAttendanceDetails(response);
+    var attendanceDetails = attendanceService.getAttendanceDetails(response);
     res.send({attendanceDetails: attendanceDetails, retry:false});
   }).catch(async function(err){
     console.log("Error in Attendance Details Scrape...");
@@ -76,9 +76,9 @@ router.post('/attendanceDetails', async function(req, res, next){
 })
 
 router.post('/idCard', async function(req, res, next){
-  var Options = await idCardService.getOptions(req.body.cookies);
+  var Options = idCardService.getOptions(req.body.cookies);
   request(Options).then(async function(response){
-    response = await idCardService.getScrapedCard(response);
+    response = idCardService.getScrapedCard(response);
     res.send({idCard: response, retry: false});
   }).catch(async function(err){
     console.log("Error in Id Card fetch...");
@@ -87,9 +87,9 @@ router.post('/idCard', async function(req, res, next){
 })
 
 router.post('/marks', async function(req, res, next){
-  var Options = await marksService.getOptions(req.body.cookies, req.body.sem);
+  var Options = marksService.getOptions(req.body.cookies, req.body.sem);
   request(Options).then(async function(response){
-    marks = await marksService.getScrapedMarks(response);
+    marks = marksService.getScrapedMarks(response);
     res.send({lastSemMarks: marks.lastSemMarks, totalMarks: marks.totalMarks, instructions: marks.instructions, retry: false});
   }).catch(async function(err){
     console.log("Error in Marks fetch...");
@@ -98,9 +98,9 @@ router.post('/marks', async function(req, res, next){
 })
 
  router.post('/currentSem', async function(req, res, next){
-  var Options = await marksService.getOptions(req.body.cookies);
+  var Options = marksService.getOptions(req.body.cookies);
   request(Options).then(async function(response){
-    sem = await marksService.getCurrentSem(response);
+    sem = marksService.getCurrentSem(response);
     res.send({sem: sem})
   }).catch(async function(err){
     console.log("Error in sem fetch");

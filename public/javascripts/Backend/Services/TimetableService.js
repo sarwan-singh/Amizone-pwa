@@ -6,7 +6,7 @@ const cheerio = require('cheerio');
 
 var TimetableUrl = "https://student.amizone.net/Calendar/home/GetDiaryEvents";
 
-async function getCurrentDate(){
+function getCurrentDate(){
     var today = new Date();
     var dd = today.getDate();
 
@@ -27,7 +27,7 @@ async function getCurrentDate(){
 }
 
 module.exports = {
-    getOptions : async function(cookie, date=getCurrentDate()){
+    getOptions : function(cookie, date=getCurrentDate()){
         var Options = {
             method: "GET",
             uri: TimetableUrl,
@@ -57,7 +57,7 @@ module.exports = {
         return Options;
     },
     
-    getTimetable : async function(response){
+    getTimetable : function(response){
         var times = response.slice(2,-2).split("},{");
         var timetable = [];
         times.forEach(element => {

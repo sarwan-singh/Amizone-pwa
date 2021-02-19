@@ -7,7 +7,7 @@ const cheerio = require('cheerio');
 var HomePageUrl = "https://student.amizone.net/";
 
 module.exports = {
-    getOptions : async function(__UserName=" ",__Password=" ",_RequestVerificationToken=" ",__QString=" "){
+    getOptions : function(__UserName=" ",__Password=" ",_RequestVerificationToken=" ",__QString=" "){
         var _method = "GET";
         if(_RequestVerificationToken!=" "){
             _method = "POST";
@@ -42,17 +42,17 @@ module.exports = {
     }
 
     ,
-    getRequestVerificationToken : async function($){
+    getRequestVerificationToken : function($){
         return $('div[class="limiter"] > div[class="container-login100"] > div[class="wrap-login100"] >div[class="widget-box login-box visible login100-form"] > form[class=" validate-form"] > input[name="__RequestVerificationToken"]').attr("value");
     }
     ,
 
-    getQString : async function($){
+    getQString : function($){
         return $('div[class="limiter"] > div[class="container-login100"] > div[class="wrap-login100"] >div[class="widget-box login-box visible login100-form"] > form[class=" validate-form"] > div[class="wrap-input100 validate-input"] > input[name="_QString"]').attr("value");
     }
     ,
 
-    generateCookies : async function(err){
+    generateCookies : function(err){
         var response;
         var check = true;
         var cookies = "";
