@@ -49,6 +49,7 @@ module.exports = {
             "Sec-Fetch-Mode": "navigate",
             "Sec-Fetch-Site": "same-origin",
             "Sec-Fetch-User": "?1",
+            "Host": "student.amizone.net",
             "Upgrade-Insecure-Requests": "1",
             "Cookie" : cookie
             }

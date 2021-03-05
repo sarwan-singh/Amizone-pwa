@@ -8,8 +8,6 @@ var IdCardUrl = "https://s.amizone.net/IDCard";
 
 module.exports = {
 
-    sam: 'rahib',
-
     getOptions : function(cookie){
         let URL = IdCardUrl;        
     
@@ -23,6 +21,7 @@ module.exports = {
               'Accept-Language': "en-US,en;q=0.9",
               "Referer": "https://student.amizone.net/",
               "Connection": "keep-alive",
+              "Host": "student.amizone.net",
               "Cookie": cookie
             }
           };

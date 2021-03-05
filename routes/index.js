@@ -31,6 +31,7 @@ router.post('/login', async function(req, res, next){
       res.send({retry :true});
     }).catch(async function(err){
       var checkAndCookies = cookieService.generateCookies(err);
+      console.log(checkAndCookies.cookies);
         res.send({cookies:checkAndCookies.cookies,retry:false, check:checkAndCookies.check});
      });
   }).catch(async function (err){
