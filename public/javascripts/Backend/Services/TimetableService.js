@@ -4,7 +4,7 @@ const request = require('request-promise').defaults({jar:true});
 
 const cheerio = require('cheerio');
 
-var TimetableUrl = "https://student.amizone.net/Calendar/home/GetDiaryEvents";
+var TimetableUrl = "https://s.amizone.net/Calendar/home/GetDiaryEvents";
 
 function getCurrentDate(){
     var today = new Date();

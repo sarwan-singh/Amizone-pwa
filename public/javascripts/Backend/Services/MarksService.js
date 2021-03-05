@@ -4,9 +4,9 @@ const request = require('request-promise').defaults({jar:true});
 
 const cheerio = require('cheerio');
 
-var MarksUrlSemWise = "https://student.amizone.net/Examination/Examination/ExaminationListSemWise";
+var MarksUrlSemWise = "https://s.amizone.net/Examination/Examination/ExaminationListSemWise";
 
-var MarksUrl = "https://student.amizone.net/Examination/Examination?X-Requested-With=XMLHttpRequest";
+var MarksUrl = "https://s.amizone.net/Examination/Examination?X-Requested-With=XMLHttpRequest";
 
 module.exports = {
     getOptions : function(cookie, semester = 0){

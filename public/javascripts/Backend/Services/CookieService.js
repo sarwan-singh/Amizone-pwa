@@ -4,7 +4,7 @@ const request = require('request-promise').defaults({jar:true});
 
 const cheerio = require('cheerio');
 
-var HomePageUrl = "https://student.amizone.net/";
+var HomePageUrl = "https://s.amizone.net/";
 
 module.exports = {
     getOptions : function(__UserName=" ",__Password=" ",_RequestVerificationToken=" ",__QString=" "){

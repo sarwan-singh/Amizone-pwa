@@ -4,7 +4,7 @@ const request = require('request-promise').defaults({jar:true});
 
 const cheerio = require('cheerio');
 
-var IdCardUrl = "https://student.amizone.net/IDCard";
+var IdCardUrl = "https://s.amizone.net/IDCard";
 
 module.exports = {
 

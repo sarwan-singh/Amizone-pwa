@@ -4,11 +4,11 @@ const request = require('request-promise').defaults({jar:true});
 
 const cheerio = require('cheerio');
 
-var AttendanceUrl = "https://student.amizone.net/Academics/FlaxiCourses/";
+var AttendanceUrl = "https://s.amizone.net/Academics/FlaxiCourses/";
 
-var AttendanceSemesterWiseUrl = "https://student.amizone.net/Academics/FlaxiCourses/CourseListSemWise";
+var AttendanceSemesterWiseUrl = "https://s.amizone.net/Academics/FlaxiCourses/CourseListSemWise";
 
-var AttendanceDetailsUrl = "https://student.amizone.net/Academics/FlaxiCourses/_Attendance?id="
+var AttendanceDetailsUrl = "https://s.amizone.net/Academics/FlaxiCourses/_Attendance?id="
 
 module.exports = {
 
