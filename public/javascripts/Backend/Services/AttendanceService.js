@@ -59,7 +59,8 @@ getDetailsOptions : function(cookie, id){
           'Accept-Language': "en-US,en;q=0.9",
           "Referer": "https://student.amizone.net/",
           "Connection": "keep-alive",
-          "Cookie": cookie
+          "Cookie": cookie,
+          "Host": "student.amizone.net",
         }
       };
 

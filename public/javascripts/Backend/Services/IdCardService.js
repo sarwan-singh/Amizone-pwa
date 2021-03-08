@@ -22,7 +22,8 @@ module.exports = {
               "Referer": "https://student.amizone.net/",
               "Connection": "keep-alive",
               "Host": "student.amizone.net",
-              "Cookie": cookie
+              "Cookie": cookie,
+              "authority": "s.amizone.net"
             }
           };
     
