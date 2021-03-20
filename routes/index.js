@@ -109,4 +109,15 @@ router.post('/marks', async function(req, res, next){
   })
 })
 
+router.post('/getImage', async function(req, res, next){
+  var Options = idCardService.getImageOptions(req.body.cookies);
+  request(Options).then(async function(response){
+    res.writeHead(200, {'Content-Type': 'image/jpeg'})
+    res.end(new Buffer.alloc(response));
+  }).catch(async function(err){
+    console.log(err);
+
+  })
+})
+
 module.exports = router;
