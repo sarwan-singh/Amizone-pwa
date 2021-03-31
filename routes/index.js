@@ -10,13 +10,6 @@ const request = require('request-promise').defaults({jar:true});
 const cheerio = require('cheerio');
 const schedule = require('node-schedule');
 
-const job = schedule.scheduleJob('0/20 * * * *',async function(){
-  request.get('https://amityamizone.herokuapp.com/').then(function(body){
-    console.log("API TRIGGERED");
-  })
-});
-
-
 router.get('/', async function(req, res, next) {
   res.status(200);
   res.send("API RUNNING");
