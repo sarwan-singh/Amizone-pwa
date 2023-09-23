@@ -16,6 +16,7 @@
     "helmet": "^4.1.1",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
+    "moesif-nodejs": "^3.5.2",
     "morgan": "~1.9.1",
     "node-gyp": "^9.4.0",
     "node-schedule": "^2.0.0",

@@ -6,8 +6,20 @@ var logger = require("morgan");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var cors = require("cors");
+var moesif = require("moesif-nodejs");
 
 var app = express();
+
+// Setting up metrics
+const moesifMiddleware = moesif({
+  applicationId:
+    "eyJhcHAiOiI2NjA6NDE0IiwidmVyIjoiMi4xIiwib3JnIjoiODY6NDEwIiwiaWF0IjoxNjkzNTI2NDAwfQ.JQVO3n2wDIdAxMBNq6ehjiv-xGlHFxerfb9vLc-91fQ",
+
+  // Identifying Users
+  identifyUser: function (req, res) {
+    return req.user ? req.user.id : "Default";
+  },
+});
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -20,6 +32,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(require("express-status-monitor")());
+app.use(moesifMiddleware);
+
+moesifMiddleware.startCaptureOutgoing();
 
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
